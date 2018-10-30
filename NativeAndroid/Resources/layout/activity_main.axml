@@ -1,7 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:soundEffectsEnabled="true"
+	android:saveEnabled="true">
+	<TextView
+		android:text="Enter Text"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="185.5dp"
+		android:layout_height="wrap_content"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_marginLeft="30px"
+		android:layout_marginRight="30px"
+		android:id="@+id/Label" />
+	<EditText
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/Label"
+		android:text="784521452574"
+		android:id="@+id/textfield"
+		android:layout_marginLeft="30px"
+		android:layout_marginRight="30px" />
+	<Button
+		android:text="Button"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="30px"
+		android:layout_marginRight="30px"
+		android:layout_below="@+id/textfield"
+		android:id="@+id/button"/>
+	<Button
+		android:text="@string/callButton"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="30px"
+		android:layout_marginRight="30px"
+		android:layout_below="@id/button"
+		android:id="@+id/call"
+		android:enabled="false"
+		android:soundEffectsEnabled="true"/>
+	   
 </RelativeLayout>

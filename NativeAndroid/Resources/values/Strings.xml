@@ -1,4 +1,6 @@
 <resources>
-    <string name="app_name">NativeAndroid</string>
+    <string name="app_name">App</string>
+    <string name="translationHistory">Translation History</string>
+    <string name="callButton">Translation History</string>
     <string name="action_settings">Settings</string>
 </resources>
