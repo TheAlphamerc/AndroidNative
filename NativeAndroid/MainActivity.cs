@@ -7,6 +7,7 @@ using Android.Content;
 using System;
 using NativeAndroid.Utility;
 using Android.Util;
+using Android.Graphics;
 
 namespace NativeAndroid
 {
@@ -28,6 +29,9 @@ namespace NativeAndroid
             Button translationHistoryButton = FindViewById<Button>(Resource.Id.call); // History button
             Button NotificationButton = FindViewById<Button>(Resource.Id.StartNotification); // Notification Button
             NotificationButton.Click += OpenNotification;
+
+            Button UpdateNotificationButton = FindViewById<Button>(Resource.Id.UpdateNotification); // Notification Button
+            UpdateNotificationButton.Click += UpdateNotification;
 
 
             string translatedNumber = string.Empty;
@@ -53,6 +57,7 @@ namespace NativeAndroid
             };
         }
 
+        #region Notification
         private void OpenNotification(object sender, EventArgs e)
         {
             try
@@ -66,5 +71,31 @@ namespace NativeAndroid
                 Log.Debug("Message[]", "Error in Notification Service started " + ex.Message);
             }
         }
+        // Update Notification
+        void UpdateNotification(object sender, EventArgs e)
+        {
+            Intent NotificationIntent = new Intent(this, typeof(NotificatonService));
+            var pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, NotificationIntent, PendingIntentFlags.UpdateCurrent);
+
+            var resultIntent = Application.Context.PackageManager.GetLaunchIntentForPackage(Application.Context.PackageName);
+
+            resultIntent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
+
+            var notification = GetNotification(pendingIntent);
+
+            NotificationManager notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
+            notificationManager.Notify(9000, notification);
+        }
+
+        Notification GetNotification(PendingIntent intent)
+        {
+            return new Notification.Builder(this)
+                    .SetContentTitle(Resources.GetString(Resource.String.notification_content_title_2))
+                    .SetContentText(Resources.GetString(Resource.String.notification_content_text_2))
+                    .SetSmallIcon(Resource.Drawable.abc_seekbar_tick_mark_material)
+                    .SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.abc_switch_thumb_material))
+                    .SetContentIntent(intent).Build();
+        } 
+        #endregion
     }
 }

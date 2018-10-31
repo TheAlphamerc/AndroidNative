@@ -6,6 +6,9 @@
 
 
   <string name="notification_content_title">New Message</string>
+  <string name="notification_content_title_2">Another Message</string>
   <string name="notification_content_text">You have new request</string>
+  <string name="notification_content_text_2">You have another request</string>
   <string name="StartNotification">Start Notification</string>
+  <string name="UpdateNotification">Update Notification</string>
 </resources>

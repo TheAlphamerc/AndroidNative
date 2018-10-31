@@ -21,7 +21,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/Label"
-		android:text="784521452574"
+		android:text=""
 		android:id="@+id/textfield"
 		android:layout_marginLeft="30px"
 		android:layout_marginRight="30px" />
@@ -51,6 +51,15 @@
 		android:layout_marginRight="30px"
 		android:layout_below="@id/call"
 		android:id="@+id/StartNotification"
+		android:soundEffectsEnabled="true"/>
+	<Button
+		android:text="@string/UpdateNotification"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="30px"
+		android:layout_marginRight="30px"
+		android:layout_below="@id/StartNotification"
+		android:id="@+id/UpdateNotification"
 		android:soundEffectsEnabled="true"/>
 	   
 </RelativeLayout>

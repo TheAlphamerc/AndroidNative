@@ -5,12 +5,13 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-
+#pragma warning disable
 namespace NativeAndroid.Utility
 {
     [Service]
@@ -23,7 +24,7 @@ namespace NativeAndroid.Utility
 
         // A notification requires an id that is unique to the application.
         const int NOTIFICATION_ID = 9000;
-
+        // Create Notification
         public override  StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
 
@@ -38,5 +39,6 @@ namespace NativeAndroid.Utility
             notificationManager.Notify(NOTIFICATION_ID, notificationBuilder.Build());
             return StartCommandResult.Sticky;
         }
+       
     }
 }
