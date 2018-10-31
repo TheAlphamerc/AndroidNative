@@ -20,27 +20,70 @@ namespace NativeAndroid.SampleActivity
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.LayoutPage_2);
-            ImageView ImageView = FindViewById<ImageView>(Resource.Id.imageView);
-            ImageView.SetImageResource(Resource.Mipmap.ic_launcher);
-       
 
-            Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner);
+            //Set Navigation bar title
+            #region Toolbar
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetActionBar(toolbar);
+            ActionBar.Title = "My Toolbar";
+            #endregion
 
-            spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
-            var adapter = ArrayAdapter.CreateFromResource(
-                    this, Resource.Array.planets_array, Android.Resource.Layout.SimpleSpinnerItem);
+            try
+            {
+                var editToolbar = FindViewById<Toolbar>(Resource.Id.edit_toolbar);
+                editToolbar.Title = "Editing";
+                editToolbar.InflateMenu(Resource.Layout.edit_menus);
+                editToolbar.MenuItemClick += (sender, e) =>
+                {
+                    Toast.MakeText(this, "Bottom toolbar tapped: " + e.Item.TitleFormatted, ToastLength.Short).Show();
+                };
+                editToolbar.Visibility = ViewStates.Invisible;
+            }
+            catch (Exception ex)
+            {
 
-            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            spinner.Adapter = adapter;
+                Toast.MakeText(this, "Error[]  " + ex.Message, ToastLength.Short).Show();
+            }
+         
 
 
 
         }
-        private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            Spinner spinner = (Spinner)sender;
-            string toast = string.Format("The planet is {0}", spinner.GetItemAtPosition(e.Position));
-            Toast.MakeText(this, toast, ToastLength.Long).Show();
+            MenuInflater.Inflate(Resource.Layout.top_menus, menu);
+            return base.OnCreateOptionsMenu(menu);
         }
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId.ToString().Equals(Resource.Id.menu_edit.ToString()))
+            {
+                var editToolbar = FindViewById<Toolbar>(Resource.Id.edit_toolbar);
+                var Item2 = FindViewById<View>(Resource.Id.menu_save);
+                Item2.Visibility = ViewStates.Visible;
+
+                var Item = FindViewById<View>(Resource.Id.menu_edit);
+                Item.Visibility = ViewStates.Invisible;
+                editToolbar.Visibility = ViewStates.Visible;
+
+
+            }
+            else if (item.ItemId.ToString().Equals(Resource.Id.menu_save.ToString()))
+            {
+                var editToolbar = FindViewById<Toolbar>(Resource.Id.edit_toolbar);
+                var Item2 = FindViewById<View>(Resource.Id.menu_save);
+                Item2.Visibility = ViewStates.Invisible;
+
+                var Item = FindViewById<View>(Resource.Id.menu_edit);
+                Item.Visibility = ViewStates.Visible;
+                editToolbar.Visibility = ViewStates.Invisible;
+
+            }
+            Toast.MakeText(this, "Action selected: " + item.TitleFormatted,
+                ToastLength.Short).Show();
+            return base.OnOptionsItemSelected(item);
+        }
+     
+
     }
 }

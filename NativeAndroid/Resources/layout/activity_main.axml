@@ -7,6 +7,9 @@
 	android:layout_height="match_parent"
 	android:soundEffectsEnabled="true"
 	android:saveEnabled="true">
+	<include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 	<TextView
 		android:text="Enter Text"
 		android:textAppearance="?android:attr/textAppearanceLarge"
@@ -16,6 +19,7 @@
 		android:minHeight="25px"
 		android:layout_marginLeft="30px"
 		android:layout_marginRight="30px"
+		android:layout_below="@+id/toolbar"
 		android:id="@+id/Label" />
 	<EditText
 		android:layout_width="fill_parent"
