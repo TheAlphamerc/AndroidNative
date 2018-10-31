@@ -1,10 +1,12 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Runtime;
 using Android.Widget;
 using System.Collections.Generic;
 using Android.Content;
+using System;
+using NativeAndroid.Utility;
+using Android.Util;
 
 namespace NativeAndroid
 {
@@ -20,10 +22,13 @@ namespace NativeAndroid
 
           
 
-            EditText phoneNumberText = FindViewById<EditText>(Resource.Id.textfield);
-            TextView translatedPhoneWord = FindViewById<TextView>(Resource.Id.Label);
-            Button translateButton = FindViewById<Button>(Resource.Id.button);
-            Button translationHistoryButton = FindViewById<Button>(Resource.Id.call);
+            TextView translatedPhoneWord = FindViewById<TextView>(Resource.Id.Label); // Label
+            EditText phoneNumberText = FindViewById<EditText>(Resource.Id.textfield); // Entry feild
+            Button translateButton = FindViewById<Button>(Resource.Id.button);        // Translate button
+            Button translationHistoryButton = FindViewById<Button>(Resource.Id.call); // History button
+            Button NotificationButton = FindViewById<Button>(Resource.Id.StartNotification); // Notification Button
+            NotificationButton.Click += OpenNotification;
+
 
             string translatedNumber = string.Empty;
             translateButton.Click += (sender, e) =>
@@ -46,6 +51,20 @@ namespace NativeAndroid
                 intent.PutStringArrayListExtra("phone_numbers", phoneNumbers);
                 StartActivity(intent);
             };
+        }
+
+        private void OpenNotification(object sender, EventArgs e)
+        {
+            try
+            {
+                Intent NotificationIntent = new Intent(this, typeof(NotificatonService));
+                StartService(NotificationIntent);
+            }
+            catch (Exception ex)
+            {
+
+                Log.Debug("Message[]", "Error in Notification Service started " + ex.Message);
+            }
         }
     }
 }
