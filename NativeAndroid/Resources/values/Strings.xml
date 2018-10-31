@@ -11,4 +11,5 @@
   <string name="notification_content_text_2">You have another request</string>
   <string name="StartNotification">Start Notification</string>
   <string name="UpdateNotification">Update Notification</string>
+  <string name="StartActivity_2">Start Activity</string>
 </resources>

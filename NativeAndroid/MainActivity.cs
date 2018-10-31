@@ -8,6 +8,7 @@ using System;
 using NativeAndroid.Utility;
 using Android.Util;
 using Android.Graphics;
+using NativeAndroid.SampleActivity;
 
 namespace NativeAndroid
 {
@@ -32,6 +33,9 @@ namespace NativeAndroid
 
             Button UpdateNotificationButton = FindViewById<Button>(Resource.Id.UpdateNotification); // Notification Button
             UpdateNotificationButton.Click += UpdateNotification;
+
+            Button StartActivityButton = FindViewById<Button>(Resource.Id.StartActivity_2); // Notification Button
+            StartActivityButton.Click += StartActivity_2;
 
 
             string translatedNumber = string.Empty;
@@ -63,6 +67,12 @@ namespace NativeAndroid
            
        
      }
+
+        private void StartActivity_2(object sender, EventArgs e)
+        {
+            var intent = new Intent(this, typeof(Activity_2));
+            StartActivity(intent);
+        }
 
         #region Notification
         private void OpenNotification(object sender, EventArgs e)
@@ -107,6 +117,7 @@ namespace NativeAndroid
         }
         #endregion
 
+        #region Override Methods
         protected override void OnResume()
         {
             Log.Debug("Activity[]", "On Resume ");
@@ -136,7 +147,8 @@ namespace NativeAndroid
         {
             Log.Debug("Activity[]", "On Restart ");
             base.OnRestart();
-        }
-       
+        } 
+        #endregion
+
     }
 }

@@ -61,5 +61,14 @@
 		android:layout_below="@id/StartNotification"
 		android:id="@+id/UpdateNotification"
 		android:soundEffectsEnabled="true"/>
+	<Button
+		android:text="@string/StartActivity_2"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="30px"
+		android:layout_marginRight="30px"
+		android:layout_below="@id/UpdateNotification"
+		android:id="@+id/StartActivity_2"
+		android:soundEffectsEnabled="true"/>
 	   
 </RelativeLayout>
