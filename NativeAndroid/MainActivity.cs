@@ -55,7 +55,14 @@ namespace NativeAndroid
                 intent.PutStringArrayListExtra("phone_numbers", phoneNumbers);
                 StartActivity(intent);
             };
-        }
+
+
+
+         
+          
+           
+       
+     }
 
         #region Notification
         private void OpenNotification(object sender, EventArgs e)
@@ -74,6 +81,8 @@ namespace NativeAndroid
         // Update Notification
         void UpdateNotification(object sender, EventArgs e)
         {
+         
+  
             Intent NotificationIntent = new Intent(this, typeof(NotificatonService));
             var pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, NotificationIntent, PendingIntentFlags.UpdateCurrent);
 
@@ -95,7 +104,39 @@ namespace NativeAndroid
                     .SetSmallIcon(Resource.Drawable.abc_seekbar_tick_mark_material)
                     .SetLargeIcon(BitmapFactory.DecodeResource(Resources, Resource.Drawable.abc_switch_thumb_material))
                     .SetContentIntent(intent).Build();
-        } 
+        }
         #endregion
+
+        protected override void OnResume()
+        {
+            Log.Debug("Activity[]", "On Resume ");
+            base.OnResume();
+        }
+        protected override void OnStart()
+        {
+            Log.Debug("Activity[]", "On start ");
+            base.OnStart();
+        }
+        protected override void OnPause()
+        {
+            Log.Debug("Activity[]", "On Pause ");
+            base.OnPause();
+        }
+        protected override void OnStop()
+        {
+            Log.Debug("Activity[]", "On Stop ");
+            base.OnStop();
+        }
+        protected override void OnDestroy()
+        {
+            Log.Debug("Activity[]", "On Destroy ");
+            base.OnDestroy();
+        }
+        protected override void OnRestart()
+        {
+            Log.Debug("Activity[]", "On Restart ");
+            base.OnRestart();
+        }
+       
     }
 }
